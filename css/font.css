@@ -1,0 +1,45 @@
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/Graphik-Regular-Web.eot") format("embedded-opentype"),
+       url("../fonts/Graphik-Regular-Web.ttf") format("truetype"), 
+       url("../fonts/Graphik-Regular-Web.woff") format("woff"), 
+       url("../fonts/Graphik-Regular-Web.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Graphik";
+  src: url("../fonts/Graphik-Semibold-Web.eot") format("embedded-opentype"), 
+       url("../fonts/Graphik-Semibold-Web.ttf") format("truetype"),
+       url("../fonts/Graphik-Semibold-Web.woff") format("woff"), 
+       url("../fonts/Graphik-Semibold-Web.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/Jost-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/Jost-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("../fonts/Jost-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oswald";
+  src: url("../fonts/Oswald-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
