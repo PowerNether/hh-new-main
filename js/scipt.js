@@ -1,3 +1,22 @@
+function nmTags() {
+  let tagToggler = document.querySelector('.nm-filter__toggler') || null;
+  let hiddenTags = Array.from(document.querySelectorAll('[data-nmfilter="hidden"]')) || null;
+
+  if (tagToggler !== null && hiddenTags !== null) {
+    tagToggler.addEventListener('click', function () {
+      hiddenTags.forEach(tag => {
+        if (tag.style.display === '') {
+          tag.style.display = 'block';
+        } else {
+          tag.style.display = null;
+        }
+      })
+    })
+  }
+}
+
+nmTags()
+
 function nmTabs() {
   let parent = document.querySelector(".nm-journal") || null;
 
@@ -31,12 +50,6 @@ function nmTabs() {
         toggler.style.width = activeElWidth + "px";
         toggler.style.left = activeElLeft + "px";
 
-        // let tabs = parent.querySelectorAll('.body-nm-journal__item') || null
-
-        // Array.from(tabs).forEach(tab => {
-        //     tab.classList.remove('active')
-        // })
-
         let tab = parent.querySelector(`[data-nmtab='${itemTab}']`);
         let tabLeft = tab.offsetLeft;
         let line = parent.querySelector(".body-nm-journal__wrapper");
@@ -50,9 +63,9 @@ function nmTabs() {
 nmTabs();
 
 function nmSliderPopular() {
-  new Swiper(".nm-popular__slider", {
+  let slider = new Swiper(".nm-popular__slider", {
     spaceBetween: 32,
-    slidesPerView: 4.95,
+    slidesPerView: 5,
     pagination: {
       el: ".nm-popular__pagination",
       clickable: true,
@@ -76,21 +89,20 @@ function nmSliderPopular() {
   if (pagination !== null) {
     pagination.appendChild(line);
 
-    let bullets = Array.from(pagination.querySelectorAll(".nm-popular__bullet")) || null;
-
-    bullets.forEach((bullet) => {
-      bullet.addEventListener("click", function () {
-        let prevBullet = pagination.querySelector(".nm-popular__bullet.active");
-        let prevIndex = prevBullet.getAttribute("data-nmindex");
-        let bullet = this;
+    // При смене перетаскиванием
+    let prevBullet = pagination.querySelector(".nm-popular__bullet.active");
+    let prevIndex = prevBullet.getAttribute("data-nmindex");
+    if (slider !== null) {
+      slider.on('slideChange', function () {
+        let bullet = document.querySelector(`.nm-popular__bullet[data-nmindex="${slider.realIndex}"]`)
         let index = bullet.getAttribute("data-nmindex");
-
+  
         if (prevIndex < index) {
           let endX = bullet.offsetLeft + bullet.offsetWidth;
           let parentWidth = pagination.offsetWidth;
-
+  
           line.style.right = parentWidth - endX + "px";
-
+  
           setTimeout(function () {
             line.style.left = bullet.offsetLeft + "px";
           }, 350);
@@ -98,15 +110,17 @@ function nmSliderPopular() {
         if (prevIndex > index) {
           let endX = bullet.offsetLeft;
           let parentWidth = pagination.offsetWidth;
-
+  
           line.style.left = endX + "px";
-
+  
           setTimeout(function () {
             line.style.right = parentWidth - endX - bullet.offsetWidth + "px";
           }, 350);
         }
-      });
-    });
+        prevBullet = pagination.querySelector(".nm-popular__bullet.active");
+        prevIndex = prevBullet.getAttribute("data-nmindex");
+      })
+    }
   }
 }
 
